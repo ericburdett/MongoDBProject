@@ -1,0 +1,9 @@
+name: mongodb_env
+channels:
+  - defaults
+  - anaconda
+dependencies:
+  - python
+  - anaconda::mongodb
+  - anaconda::pymongo
+  - anaconda::flask
