@@ -52,12 +52,7 @@ def ws_create():
         to_word = flask.request.form.get('to_word', '')
         to_lang = flask.request.form.get('to_lang', '')
 
-        print('from_word:', from_word)
-        print('to_word:', to_word)
-        print('to_lang:', to_lang)
-
         result = mongo['dictionary']['collection']['words'].update({'word': from_word}, {"$push": {"translations": {"word": to_word, "lang": to_lang}}})
-        print(result)
         if result.get('nModified', 0):
             return '', 200
         else:
@@ -68,11 +63,7 @@ def ws_create():
         from_word = flask.request.form.get('from_word', '')
         to_word = flask.request.form.get('to_word', '')
 
-        print('from_word:', from_word)
-        print('to_word:', to_word)
-
         result = mongo['dictionary']['collection']['words'].update({'word': from_word}, {"$pull": {"translations": {"word": to_word}}})
-        print(result)
         if result.get('nModified', 0):
             return '', 200
         else:
